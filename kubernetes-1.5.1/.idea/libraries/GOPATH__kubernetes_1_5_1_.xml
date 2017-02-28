@@ -1,0 +1,29 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;kubernetes-1.5.1&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/golang.org" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/google.golang.org" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/go4.org" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/k8s.io" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/bitbucket.org" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/cloud.google.com" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/github.com" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/golang.org" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/google.golang.org" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/go4.org" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/k8s.io" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/bitbucket.org" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/cloud.google.com" />
+      <root url="file://$PROJECT_DIR$/../../kubernetes-1.5.1/src/k8s.io/kubernetes/vendor/src/github.com" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>

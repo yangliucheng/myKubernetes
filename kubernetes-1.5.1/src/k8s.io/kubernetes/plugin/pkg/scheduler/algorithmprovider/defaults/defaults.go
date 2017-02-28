@@ -165,6 +165,7 @@ func defaultPriorities() sets.String {
 	return sets.NewString(
 		// spreads pods by minimizing the number of pods (belonging to the same service or replication controller) on the same node.
 		factory.RegisterPriorityConfigFactory(
+			// ... 相同service,rc的pod会被分配到尽量不同的node上
 			"SelectorSpreadPriority",
 			factory.PriorityConfigFactory{
 				Function: func(args factory.PluginFactoryArgs) algorithm.PriorityFunction {
@@ -186,9 +187,11 @@ func defaultPriorities() sets.String {
 		),
 
 		// Prioritize nodes by least requested utilization.
+		// 计算cpu，memory的空闲，越空闲，打分越高
 		factory.RegisterPriorityFunction2("LeastRequestedPriority", priorities.LeastRequestedPriorityMap, nil, 1),
 
 		// Prioritizes nodes to help achieve balanced resource usage
+		// 分配pod之后，保证各个node节点的资源保持平衡
 		factory.RegisterPriorityFunction2("BalancedResourceAllocation", priorities.BalancedResourceAllocationMap, nil, 1),
 
 		// Set this weight large enough to override all other priority functions.
