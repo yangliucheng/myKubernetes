@@ -35,6 +35,7 @@ type ServerRunOptions struct {
 	AllowPrivileged             bool
 	EventTTL                    time.Duration
 	KubeletConfig               kubeletclient.KubeletClientConfig
+	//如果非零，表示每个用户连接的最大值，字节数/秒，当前只适用于长时间运行的请求。
 	MaxConnectionBytesPerSec    int64
 	SSHKeyfile                  string
 	SSHUser                     string

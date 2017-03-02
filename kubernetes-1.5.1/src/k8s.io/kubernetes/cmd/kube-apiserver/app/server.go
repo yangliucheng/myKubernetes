@@ -107,6 +107,7 @@ func Run(s *options.ServerRunOptions) error {
 			HostPIDSources:     []string{},
 			HostIPCSources:     []string{},
 		},
+		// 如果非零，表示每个用户连接的最大值，字节数/秒，当前只适用于长时间运行的请求。
 		PerConnectionBandwidthLimitBytesPerSec: s.MaxConnectionBytesPerSec,
 	})
 
@@ -147,6 +148,8 @@ func Run(s *options.ServerRunOptions) error {
 	// Proxying to pods and services is IP-based... don't expect to be able to verify the hostname
 	proxyTLSClientConfig := &tls.Config{InsecureSkipVerify: true}
 
+	// 设置反序列化的缓存大小
+	// 如果是0，则根据s.GenericServerRunOptions.TargetRAMMB设置
 	if s.GenericServerRunOptions.StorageConfig.DeserializationCacheSize == 0 {
 		// When size of cache is not explicitly set, estimate its size based on
 		// target memory usage.
@@ -164,6 +167,7 @@ func Run(s *options.ServerRunOptions) error {
 		// collective sizes of the objects in the cache.
 		clusterSize := s.GenericServerRunOptions.TargetRAMMB / 60
 		s.GenericServerRunOptions.StorageConfig.DeserializationCacheSize = 25 * clusterSize
+		// 最小设置为1000
 		if s.GenericServerRunOptions.StorageConfig.DeserializationCacheSize < 1000 {
 			s.GenericServerRunOptions.StorageConfig.DeserializationCacheSize = 1000
 		}
@@ -173,6 +177,7 @@ func Run(s *options.ServerRunOptions) error {
 	if err != nil {
 		glog.Fatalf("error generating storage version map: %s", err)
 	}
+
 	storageFactory, err := genericapiserver.BuildDefaultStorageFactory(
 		s.GenericServerRunOptions.StorageConfig, s.GenericServerRunOptions.DefaultStorageMediaType, api.Codecs,
 		genericapiserver.NewDefaultResourceEncodingConfig(), storageGroupsToEncodingVersion,
