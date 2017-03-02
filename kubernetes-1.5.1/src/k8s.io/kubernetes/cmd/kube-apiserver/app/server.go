@@ -80,16 +80,21 @@ cluster's shared state through which all other components interact.`,
 
 // Run runs the specified APIServer.  This should never exit.
 func Run(s *options.ServerRunOptions) error {
+	//... 检查配置
 	genericvalidation.VerifyEtcdServersList(s.GenericServerRunOptions)
 	genericapiserver.DefaultAndValidateRunOptions(s.GenericServerRunOptions)
+	// ... 根据默认的配置，创建apiserver配置文件，并应用设置的配置
 	genericConfig := genericapiserver.NewConfig(). // create the new config
 							ApplyOptions(s.GenericServerRunOptions). // apply the options selected
 							Complete()                               // set default values based on the known values
 
+	// 获取本机IP，和集群的ip范围
+	// 集群的IP访问，通过kubernetes配置文件的参数SERVICE_CLUSTER_IP_RANGE设置
 	serviceIPRange, apiServerServiceIP, err := genericapiserver.DefaultServiceIPRange(s.GenericServerRunOptions.ServiceClusterIPRange)
 	if err != nil {
 		glog.Fatalf("Error determining service IP ranges: %v", err)
 	}
+	// 生成自签名的证书文件
 	if err := genericConfig.MaybeGenerateServingCerts(apiServerServiceIP); err != nil {
 		glog.Fatalf("Failed to generate service certificate: %v", err)
 	}
